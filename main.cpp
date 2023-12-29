@@ -27,15 +27,15 @@ void CheckAround(string intxt){
     bool result=NULL;
 
     int amount;
-    amount=intxt.length();
+    amount=intxt.length(); //จำนวนอักษรในข้อความที่ส่งมา
 
     for(int k=0;k<amount;k++){
-            around=""; //เก็บตัวอักษรรอบๆ
+            around=""; //สำหรับเก็บตัวอักษรรอบๆ
 
-            given=intxt[k];
-            next=intxt[k+1];
+            given=intxt[k]; //ตัวแรก
+            next=intxt[k+1]; //ตัวถัดไป
 
-            if(k+1==amount){
+            if(k+1==amount){  //กรณีถึงตำแหน่งสุดท้าย จะไม่มีตำแหน่งถัดไปให้เช็ค จึงเช็คตัวก่อนหน้าแทน
                 next=intxt[k-1];
             }
             
