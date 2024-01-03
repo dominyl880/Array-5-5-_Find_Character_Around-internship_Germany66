@@ -14,7 +14,7 @@ int main(){
 
     string data[]={"pqruxw","kpuxy","abcdefgrq","mnorhy","abmnptrod","lmrqtw","abcdefghyxurqpsvi","tplmno"};
     
-    for(int h=0;h<data->length();h++){
+    for(int h=0;h<8;h++){
         CheckAround(data[h]);
     } 
 
@@ -22,9 +22,11 @@ int main(){
 }
 void CheckAround(string intxt){
     char given,next;
-    int HereRow=-1,HereCol=-1;
+    int Row,Col;
     string around;
     bool result=NULL;
+    short counter=0;
+
 
     int amount;
     amount=intxt.length(); //จำนวนอักษรในข้อความที่ส่งมา
@@ -43,11 +45,8 @@ void CheckAround(string intxt){
             for(int i1=0;i1<sizeof(a)/sizeof(a[0]);i1++){
                 for(int p=0;p<sizeof(a[0]);p++){
                     if(a[i1][p]==given){
-                        // cout<<"1 "; 
-                        HereRow=i1;
-                        HereCol=p;
-                    }else{
-                        // cout<<"0 "; 
+                        Row=i1;
+                        Col=p;
                     }
                 }
             }
@@ -55,54 +54,48 @@ void CheckAround(string intxt){
             // หาข้อมูลรอบตัวนั้น มากที่สุดอยู่ที่ 8 จำนวน
             for(int i=0;i<sizeof(a)/sizeof(a[0]);i++){
                 for(int p=0;p<sizeof(a[0]);p++){
-                    if(i==HereRow && p==HereCol){
+
+                    if(i==Row && p==Col){
                         // cout<<"# ";  //ที่อยู่ตัวอักษรตรงกลาง
-                    }else if(i==HereRow-1 && p==HereCol){
+                    }else if(i==Row-1 && p==Col-1){
                         around+=a[i][p];
-                    }else if(i==HereRow+1 && p==HereCol){
+                    }else if(i==Row-1 && p==Col){
                         around+=a[i][p];
-                    }else if(i==HereRow-1 && p==HereCol-1){
+                    }else if(i==Row-1 && p==Col+1){
                         around+=a[i][p];
-                    }else if(i==HereRow   && p==HereCol-1){
+                    }else if(i==Row   && p==Col-1){
                         around+=a[i][p];
-                    }else if(i==HereRow+1 && p==HereCol-1){
+                    }else if(i==Row && p==Col+1){
                         around+=a[i][p];
-                    }else if(i==HereRow-1 && p==HereCol+1){
+                    }else if(i==Row+1 && p==Col-1){
                         around+=a[i][p];
-                    }else if(i==HereRow   && p==HereCol+1){
+                    }else if(i==Row+1   && p==Col){
                         around+=a[i][p];
-                    }else if(i==HereRow+1 && p==HereCol+1){
+                    }else if(i==Row+1 && p==Col+1){
                         around+=a[i][p];
                     }else{
                         // cout<<"0 "; // ไม่เกี่ยวข้อง
                     } 
-                }
-                // cout<<endl;
+
+                } 
             } 
             
-            short counter=0;
               
             for(int q=0;q<around.length();q++){ 
               if(around[q]==next){
-                  // cout<<" found!.";
-              }else{
-                  // cout<<" not."; //นับตัวที่ไม่เจอ ถ้าเท่ากับจำนวนอักษรที่มาในข้อความ หมายความว่า ตัวถัดไป เช็คกับรอบปัจจุบันแล้วไม่มีความสัมพันธ์กัน
                   counter+=1;
-              } 
-              // cout<<endl;
+                  break; //เจอแล้ว ออกเลย
+              }
             }
 
-            if(counter==around.length()){  //ถ้าจำนวนไม่เจอ==จำนวนที่มี หมายความว่าให้ออกเลย ไม่ต้องทำต่อ 
-              result=false;
-              break;
+            if(counter!=intxt.length()){  //ถ้าจำนวนเจอ!=จำนวนที่มี หมายความว่าไม่ได้มีความสัมพันธ์กันทุกตัว
+              result=false; 
             }else{
               result=true;
             }
 
-            // if(result==false) break; //ออกไปอีก ไม่ต้องทำชุดถัดไป เพราะมัน เป็นเท็จแล้ว
     }
-
-    // cout<<endl;
+ 
     if(result==true){
         cout<<"True ";
     }else{
