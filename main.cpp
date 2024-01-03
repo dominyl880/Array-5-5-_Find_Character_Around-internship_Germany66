@@ -84,7 +84,7 @@ void CheckAround(string intxt){
             for(int q=0;q<around.length();q++){ 
               if(around[q]==next){
                   counter+=1;
-                  break; //เจอแล้ว ออกเลย
+                  break; //เจอแล้วตัวอักษรถัดไปแล้ว ออกเลย
               }
             }
 
