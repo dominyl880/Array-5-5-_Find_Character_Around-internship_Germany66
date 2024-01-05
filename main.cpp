@@ -20,6 +20,7 @@ int main(){
 
     return 0;
 }
+
 void CheckAround(string intxt){
     char given,next;
     int Row,Col;
@@ -88,10 +89,10 @@ void CheckAround(string intxt){
               }
             }
 
-            if(counter!=intxt.length()){  //ถ้าจำนวนเจอ!=จำนวนที่มี หมายความว่าไม่ได้มีความสัมพันธ์กันทุกตัว
-              result=false; 
-            }else{
+            if(counter==intxt.length()){  //ถ้าจำนวนเจอ==จำนวนที่มี หมายความว่ามีความสัมพันธ์กันทุกตัว
               result=true;
+            }else{
+              result=false; 
             }
 
     }
